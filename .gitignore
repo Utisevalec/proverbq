@@ -1,0 +1,4 @@
+#backup fileji
+*.php~
+*.txt~
+*.bak
