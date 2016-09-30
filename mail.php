@@ -5,7 +5,31 @@ $onload = "";
 #chek if
 if ($_POST['send'] == '0N' AND strlen($_POST['koda']) == 6 AND strlen($_POST['email']) > 6) {
 	#za git
-	mail($_POST['email'],"Vprasalnik","Vprasalnik - prijavna koda','Spletni naslov: http://vprasalnik.tisina.net\nPrijavna koda: $_POST[koda]");
+	//mail($_POST['email'],"Vprasalnik","Vprasalnik - prijavna koda','Spletni naslov: http://vprasalnik.tisina.net\nPrijavna koda: $_POST[koda]");
+
+	#mysql spremenljivke
+	$mysql_streznik = "localhost";
+	$mysql_uporabnik = "root";
+	$mysql_geslo = "";
+	$mysql_baza = "php_mail";
+
+	#zacni seje
+	session_start();
+
+	#povezi na bazo
+	$mysql_povezava = mysql_connect($mysql_streznik,$mysql_uporabnik,$mysql_geslo) or die ("Ne morem se povezati na MySQL bazo!");
+	mysql_select_db($mysql_baza);
+	mysql_query("SET CHARACTER SET UTF8");	
+	
+	#q
+	$mysql_ukaz = "INSERT INTO mails(id, cas_sprejeto, za_ime, za_email, od_ime, od_email, naslov, tekst) VALUES('',NOW(),'$_POST[email]','$_POST[email]','Vprasalnik','noreplay@tisina.net','Vprasalnik - prijavna koda','Spletni naslov: http://vprasalnik.tisina.net\nPrijavna koda: $_POST[koda]')";	
+	$mysql_zapis = mysql_query($mysql_ukaz);
+	
+	#vn
+	$onload = "alert('Prijavna koda je bila uspešno poslana!');window.close();";	
+	
+	#izkjuci povezavo z bazo
+	mysql_close($mysql_povezava);	
 }
 
 
