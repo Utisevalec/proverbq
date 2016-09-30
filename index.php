@@ -8,6 +8,9 @@ $mysql_uporabnik = "root";
 $mysql_geslo = "";
 $mysql_baza = "meterc_vprasalnik";
 
+#ostalo
+$info_email = "vprasalnikpregovori@gmail.com";
+
 #zacni seje
 session_start();
 
