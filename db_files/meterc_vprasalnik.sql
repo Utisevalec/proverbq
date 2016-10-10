@@ -96,6 +96,18 @@ CREATE TABLE `vnos_extra` (
   `cas` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `uporabnik` varchar(32) COLLATE utf8_bin NOT NULL,
+  `geslo` varchar(40) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 --
 -- Indexes for dumped tables
 --
@@ -137,6 +149,13 @@ ALTER TABLE `resevalci` ADD FULLTEXT KEY `koda_2` (`koda`);
 ALTER TABLE `vnos_extra`
   ADD PRIMARY KEY (`resevalec`,`tip`),
   ADD KEY `resevalec` (`resevalec`);
+  
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+  
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -146,7 +165,10 @@ ALTER TABLE `vnos_extra`
 -- AUTO_INCREMENT for table `resevalci`
 --
 ALTER TABLE `resevalci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2095;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  
+  ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
